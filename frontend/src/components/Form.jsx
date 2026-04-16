@@ -16,7 +16,7 @@ const handleSubmit = async () => {
   try {
     // 1. Changed URL to match your FastAPI @app.post("/api/victim-submit")
     const response = await fetch(
-      `${process.env.VITE_API_URL}/api/victim-submit`,
+      `${process.env.REACT_APP_API_URL}/api/victim-submit`,
       {
         method: "POST",
         headers: {

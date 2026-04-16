@@ -30,7 +30,7 @@ export default function PersonCard({ person, setPeopleData }) {
   const handleAccept = async (id) => {
     try {
       const response = await axios.post(
-        `${process.env.VITE_API_URL}/api/accept-submit`,
+        `${process.env.REACT_APP_API_URL}/api/accept-submit`,
         { id: id },
       );
       enqueueSnackbar(response.data.status, { variant: "success" });

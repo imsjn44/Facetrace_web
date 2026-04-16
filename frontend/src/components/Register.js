@@ -46,7 +46,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/register`,
+        `${process.REACT_APP_API_URL}/register`,
         {
           first_name: firstName,
           last_name: lastName,
