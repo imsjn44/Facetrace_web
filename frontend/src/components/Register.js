@@ -45,12 +45,15 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/register", {
-        first_name: firstName,
-        last_name: lastName,
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/register`,
+        {
+          first_name: firstName,
+          last_name: lastName,
+          username: username,
+          password: password,
+        },
+      );
       if (response) {
         enqueueSnackbar(response.data.status, { variant: "success" });
         setUser({

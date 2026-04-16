@@ -19,10 +19,15 @@ from fastapi.security import  OAuth2PasswordRequestForm
 from authenticate import Token,  authenticate_user, create_access_token, UserInDB, get_password_hash, get_authorised_user
 from datetime import datetime, timedelta
 from typing import Annotated
+from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 origins = [
-    "http://localhost:3000",
+    "FRONTEND_URL"
 ]
 
 

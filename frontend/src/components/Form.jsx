@@ -15,30 +15,33 @@ const handleSubmit = async () => {
 
   try {
     // 1. Changed URL to match your FastAPI @app.post("/api/victim-submit")
-    const response = await fetch("http://localhost:8000/api/victim-submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/victim-submit`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // 2. Structuring keys to match what your backend logic expects
+          sender_details: {
+            firstname: user.firstnameuser,
+            lastname: user.lastnameuser,
+            address: user.addressuser,
+            phone: user.numberuser,
+            citizenship_card: base64Image, // Your backend pops this
+          },
+          victim_details: {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            age: user.age,
+            gender: "Not Specified", // Your backend expects 'gender' for verification_data
+            address: user.address,
+            victim_image: base64Image, // Your backend pops this
+          },
+        }),
       },
-      body: JSON.stringify({
-        // 2. Structuring keys to match what your backend logic expects
-        sender_details: {
-          firstname: user.firstnameuser,
-          lastname: user.lastnameuser,
-          address: user.addressuser,
-          phone: user.numberuser,
-          citizenship_card: base64Image, // Your backend pops this
-        },
-        victim_details: {
-          firstname: user.firstname,
-          lastname: user.lastname,
-          age: user.age,
-          gender: "Not Specified", // Your backend expects 'gender' for verification_data
-          address: user.address,
-          victim_image: base64Image, // Your backend pops this
-        },
-      }),
-    });
+    );
 
     if (response.ok) {
       const result = await response.json();

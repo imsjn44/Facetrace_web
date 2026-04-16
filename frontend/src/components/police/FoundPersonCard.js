@@ -31,7 +31,7 @@ export default function PersonCard({ person, setPeopleData }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/delete-victim",
+        `${import.meta.env.VITE_API_URL}/api/delete-victim/`,
         { id: id },
       );
       enqueueSnackbar(response.data.status, { variant: "success" });
