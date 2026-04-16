@@ -17,3 +17,4 @@ watchfiles==0.21.0
 websockets==12.0
 opencv-python
 pymongo
+tensorflow
