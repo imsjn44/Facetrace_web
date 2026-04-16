@@ -1,3 +1,7 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 from fastapi import FastAPI, WebSocket, HTTPException, Request, Depends, status
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,8 +27,10 @@ origins = [
 
 
 # MongoDB connection
-client = MongoClient('mongodb+srv://facetrace:facetrace%40123@cluster0.etbyca0.mongodb.net/?appName=Cluster0')
 
+MONGO_URI = os.getenv("MONGODB_URI")
+
+client = MongoClient(MONGO_URI)   
 # db = client["facetrace"]         present in db.py
 victims_collection = db["victims"]
 senders_collection = db["senders"]

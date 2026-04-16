@@ -1,5 +1,10 @@
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb+srv://facetrace:facetrace%40123@cluster0.etbyca0.mongodb.net/?appName=Cluster0")
+load_dotenv()
+
+MONGO_URI = os.getenv("MONGODB_URI")
+
+client = MongoClient(MONGO_URI)   
 db = client["facetrace"]
-
