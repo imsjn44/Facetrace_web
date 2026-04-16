@@ -11,3 +11,5 @@ node_modules/
 
 # Env files
 .env
+
+!backend/static/model/facetrace1.h5

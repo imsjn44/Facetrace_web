@@ -16,7 +16,7 @@ function FoundPeople() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/found-victims/`,
+          `${process.env.VITE_API_URL}/api/found-victims/`,
         );
         setPeopleData(response.data);
       } catch (err) {

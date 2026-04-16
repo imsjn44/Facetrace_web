@@ -36,7 +36,7 @@ const NoticeTab = () => {
       const token = localStorage.getItem("access_token");
       console.log("TOKEN:", token);
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/victims`,
+        `${process.env.VITE_API_URL}/api/victims`,
         { status: status[i] },
         {
           headers: {

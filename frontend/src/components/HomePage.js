@@ -59,7 +59,7 @@ const HomePage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/victim-submit`,
+        `${process.env.VITE_API_URL}/api/victim-submit`,
         {
           sender_details: {
             firstname: user.sender_firstname,

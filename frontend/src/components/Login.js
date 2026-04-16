@@ -51,7 +51,7 @@ const Signin = ({ setLoggedIn }) => {
       formData.append("password", user.password);
 
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/token`,
+        `${process.env.VITE_API_URL}/token`,
         formData,
         {
           headers: {
