@@ -19,6 +19,7 @@ opencv-python
 pymongo
 tensorflow
 matplotlib
- scikit-learn   
- sqlalchemy                                                                                                      
-   fastapi[standard]
+scikit-learn   
+sqlalchemy                                                                                                      
+fastapi[standard]
+python-jose
