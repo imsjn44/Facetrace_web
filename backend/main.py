@@ -121,7 +121,7 @@ def get_password_hash(password: str):
 
 
 
-@app.post("/register/")
+@app.post("/register")
 async def register(data: Registration):
     try:
         user_data = data.model_dump()   # ✅ FIXED (NOT dict())
