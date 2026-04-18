@@ -60,8 +60,11 @@ app.mount("/static", StaticFiles(directory=static_path), name="static")
 @app.on_event("startup")
 def on_startup():
     global facetrace_model
-    facetrace_model = utils.get_model()
-    print("model loaded")
+    try:
+        facetrace_model = utils.get_model()
+        print("model loaded")
+    except Exception as e:
+        print("MODEL LOAD FAILED:", e)
 
 
 
