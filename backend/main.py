@@ -38,13 +38,6 @@ senders_collection = db["senders"]
 found_collection = db["found"]
 users_collection = db["users"]
 
-facetrace_model = None
-async def startup_event():
-    global facetrace_model
-    facetrace_model = utils.get_model()
-    print("model loaded")
-
-
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -69,6 +62,8 @@ def on_startup():
     global facetrace_model
     facetrace_model = utils.get_model()
     print("model loaded")
+
+
 
 
 
@@ -112,13 +107,13 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 @app.post("/register")
 async def register(data: Registration):
     try:
-        user_data = data.model_dump()   # ✅ FIXED (NOT dict())
+        print("REGISTER HIT")  # DEBUG
 
-        # check duplicate user
+        user_data = data.model_dump()
+
         if users_collection.find_one({"username": user_data["username"]}):
             raise HTTPException(status_code=400, detail="Username already taken")
 
-        # hash password
         hashed_password = get_password_hash(user_data["password"])
 
         new_user = {
@@ -130,10 +125,10 @@ async def register(data: Registration):
 
         users_collection.insert_one(new_user)
 
-        return {"status": "successfully registered"}
+        return {"status": "success"}
 
     except Exception as e:
-        print("REGISTER ERROR:", e)
+        print("REGISTER ERROR:", str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/victim-submit/")
