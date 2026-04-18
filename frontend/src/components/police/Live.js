@@ -20,7 +20,9 @@ function Live({ setMatches }) {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket(`${process.env.VITE_WS_URL}/ws/face-detect/`);
+    const socket = new WebSocket(
+      `${process.env.REACT_APP_API_WS_URL}/ws/face-detect/`,
+    );
     setSocket(socket);
 
     socket.onopen = (e) => {

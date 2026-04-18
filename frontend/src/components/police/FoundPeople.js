@@ -15,12 +15,20 @@ function FoundPeople() {
   useEffect(() => {
     async function fetchData() {
       try {
+        const token = localStorage.getItem("token");
+
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/found-victims/`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
         );
+
         setPeopleData(response.data);
       } catch (err) {
-        console.log(err);
+        console.log("Full Error:", err);
       }
     }
     fetchData();

@@ -7,7 +7,7 @@ function Test() {
   const [img, setImg] = React.useState(null);
 
   const handleClick = async () => {
-    const socket = new WebSocket(`${process.env.VITE_WS_URL}/ws/img`);
+    const socket = new WebSocket(`${process.env.REACT_APP_API_WS_URL}/ws/img`);
     socket.onopen = (e) => {
       socket.send(
         JSON.stringify({

@@ -46,7 +46,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        `${process.REACT_APP_API_URL}/register`,
+        `${process.env.REACT_APP_API_URL}/register`,
         {
           first_name: firstName,
           last_name: lastName,
