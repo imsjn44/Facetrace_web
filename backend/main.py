@@ -26,10 +26,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-origins = [
-    "FRONTEND_URL"
-]
-
+origins=[os.getenv("FRONTEND_URL")]
 
 # MongoDB connection
 
@@ -114,10 +111,6 @@ from pymongo import MongoClient
 
 # Password hashing (IMPORTANT FIX)
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def get_password_hash(password: str):
-    return pwd_context.hash(password)
 
 
 
