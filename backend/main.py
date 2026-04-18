@@ -21,9 +21,7 @@ from datetime import datetime, timedelta
 from typing import Annotated
 from pymongo import MongoClient
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
 
 origins=[os.getenv("FRONTEND_URL")]
@@ -67,13 +65,10 @@ static_path = os.path.join(script_dir,"static")
 app.mount("/static", StaticFiles(directory=static_path), name="static")
 
 @app.on_event("startup")
-async def on_startup():
-    await startup_event()
-
-@app.get("/")
-async def root():
-
-    return {"message": "hi"}
+def on_startup():
+    global facetrace_model
+    facetrace_model = utils.get_model()
+    print("model loaded")
 
 
 
@@ -285,7 +280,7 @@ async def delete_victim(data: dict):
             os.remove(file_path)
 
     return {"status": "successfully deleted"}
-@app.post("/api/victims")
+@app.get("/api/victims")
 async def get_victims(
     data: dict, 
     request: Request,  # Add this to get the request object
